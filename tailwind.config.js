@@ -5,10 +5,10 @@ export default {
     theme: {
         extend: {
             fontFamily: {
-                inter: ['Inter']
+                roboto: ['Roboto', 'sans-serif']
             },
             colors
         }
     },
-    plugins: []
+    plugins: [require('@tailwindcss/forms')]
 };

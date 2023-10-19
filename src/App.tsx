@@ -1,21 +1,7 @@
-import { Fragment } from 'react';
-import { ControlledInput, Text } from './ui';
-import { useForm } from 'react-hook-form';
+import { Route } from './routes/routes';
 
 const App: React.FC = () => {
-    const { control, handleSubmit } = useForm();
-    return (
-        <Fragment>
-            <ControlledInput
-                controllerProps={{
-                    control,
-                    name: 'email'
-                }}
-                placeholder="hello world"
-                label="Email"
-            />
-        </Fragment>
-    );
+    return <Route />;
 };
 
 export default App;
