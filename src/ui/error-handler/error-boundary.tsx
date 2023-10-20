@@ -17,6 +17,7 @@ export class ErrorBoundary extends Component<Props, State> {
 
     componentDidCatch(error: Error, errorInfo: ErrorInfo) {
         console.log('ErrorBoundary caught an error: ', error, errorInfo);
+        // fetch('http://localhost:8080/api/v1/tracing-error');
         this.setState({ hasError: true });
     }
 
