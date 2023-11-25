@@ -3,16 +3,16 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
 import { Button, ControlledInput } from '@/ui';
 import { useForm, Form } from 'react-hook-form';
-import { useAppSelector } from '@/core';
 
 const schema = z.object({
     email: z.string({ required_error: 'email is required' }).email({ message: 'invalide email' }),
-    password: z.string({ required_error: 'password is required' })
+    password: z
+        .string({ required_error: 'password is required' })
+        .min(3, { message: 'password is required' })
 });
 export type FormType = z.infer<typeof schema>;
 
 export const LoginPage: React.FC = () => {
-    const state = useAppSelector((state) => state.auth);
     const { control, handleSubmit } = useForm<FormType>({
         defaultValues: {
             email: '',
@@ -22,8 +22,7 @@ export const LoginPage: React.FC = () => {
     });
     const submit_data = (data: FormType) => {
         console.log('data submited by form');
-        console.table(data);
-        console.table(state);
+        console.log(data);
     };
     return (
         <div className="flex flex-col justify-center items-center w-full h-screen">
@@ -49,8 +48,8 @@ export const LoginPage: React.FC = () => {
                 <Button
                     type="submit"
                     onClick={handleSubmit(submit_data)}
-                    title="Login"
-                    variant="outline"
+                    title="LOGIN"
+                    variant="primary"
                 />
             </Form>
         </div>

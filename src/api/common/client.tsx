@@ -1,26 +1,19 @@
-import { API_URL } from '@/core';
-import axios from 'axios';
-
-axios.interceptors.request.use(
-    (config) => {
-        console.log(config);
-        return config;
-    },
-    (err) => {
-        console.log(err);
-    }
-);
-axios.interceptors.response.use(
-    (config) => {
-        console.log(config);
-        return config;
-    },
-    (err) => {
-        console.log(err);
-    }
-);
+import { env } from '@/core';
+import axios, { AxiosError } from 'axios';
 
 export const client = axios.create({
-    baseURL: API_URL,
+    baseURL: env.API_URL,
     withCredentials: true
 });
+
+// complate the interceptor to handle the response error
+client.interceptors.response.use(
+    (response) => response,
+    (error: AxiosError) => {
+        if (error.response) {
+            const { status, data } = error.response;
+            return Promise.reject({ status, data });
+        }
+        return Promise.reject(error);
+    }
+);

@@ -12,7 +12,7 @@ type BVariant = {
 
 export const buttonVariants: BVariant = {
     defaults: 'flex-row items-center justify-center rounded-md px-12 py-2 my-2',
-    primary: 'bg-black',
+    primary: 'bg-primary-500 text-white',
     secondary: 'bg-primary-600',
     outline: 'border border-neutral-400'
 };
